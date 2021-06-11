@@ -2,6 +2,7 @@
 This repository contains the source code for the paper:
 
 Brack A., Hoppe A., Ewerth R. (2021) Citation Recommendation for Research Papers via Knowledge Graphs, TPDL 2021 (accepted for publication).
+Preprint: https://arxiv.org/abs/2106.05633
 
 # Installation
 Python 3.6 required.  Install the requirements with:
