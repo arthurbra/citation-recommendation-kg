@@ -48,7 +48,7 @@ def compute_cosine_similarities(vec, others):
     #return cosine_similarity(vec, others).flatten()
 
 
-def rank_documents(out_name, testset, all_docs, all_docs_vectors, dense_embeddings=False, write_ranking=False, like_specter=like_specter):
+def rank_documents(out_name, testset, all_docs, all_docs_vectors, dense_embeddings=False, write_ranking=False):
     avp10s = []
     avp20s = []
     avp50s = []
@@ -59,14 +59,8 @@ def rank_documents(out_name, testset, all_docs, all_docs_vectors, dense_embeddin
         ranked = []
         index = all_docs.index(d["pii"])
         d_vec = all_docs_vectors[index]
-        if like_specter:
-            to_retrieve = d["fake_refs"] + d["real_refs"]
-            to_retrieve_vec = np.array([all_docs_vectors[all_docs.index(r)] for r in to_retrieve])
-            if not dense_embeddings:
-                to_retrieve_vec = np.array([np.array(r.todense()).reshape(-1) for r in to_retrieve_vec])
-        else:
-            to_retrieve = all_docs
-            to_retrieve_vec = all_docs_vectors
+        to_retrieve = all_docs
+        to_retrieve_vec = all_docs_vectors
         if dense_embeddings:
             similarities = compute_cosine_similarities([d_vec], to_retrieve_vec)
         else:
